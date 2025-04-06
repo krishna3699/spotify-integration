@@ -1,0 +1,47 @@
+<div class="dashboard-container">
+    <!-- <h2>Your Top Tracks</h2> -->
+    <div class="dashboard-header">
+      <h2>Your Top Tracks</h2>
+      <button class="logout-button" (click)="logout()">Logout</button>
+    </div>
+    @if(tracks$ | async) {     
+    }
+    @if(tracks.length > 0) {
+      <table>
+        <thead>
+          <tr>
+            <th>Track Name</th>
+            <th>Artist</th>
+            <th>Advice</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (tr of tracks; track tr.name) {
+            <tr>
+              <td>{{ tr.name }}</td>
+              <td>{{ tr.artist }}</td>
+              <td>
+                <button (click)="openAdvice(tr)">Get Advice</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+  
+      <div class="pagination">
+        <button (click)="changePage(-1)" [disabled]="currentPage === 1">Previous</button>
+        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+        <button (click)="changePage(1)" [disabled]="currentPage === totalPages">Next</button>
+      </div>
+    } @else {
+      <p>No tracks found.</p>
+      @if (error) {
+        <p class="error-message">
+            {{ error.message }}
+        </p>
+    }
+    }
+
+</div>
+  
+  

@@ -11,6 +11,5 @@ export const generateToken = (userId: string): string => {
 };
 
 export const verifyToken = (token: string): any => {
-  console.log('JWT secret:', config.JWT_SECRET);
   return jwt.verify(token, config.JWT_SECRET);
 };
